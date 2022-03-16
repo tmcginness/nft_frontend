@@ -5,6 +5,11 @@ import Button from 'react-bootstrap/Button';
 
 
 const Add = (props) => {
+
+  let emptyUser = {image: '../default.jpeg', fname: '', lname: '', password: '', collection: '', offer: [], properties: []}
+const [user, setUser] = useState(emptyUser)
+
+const [users, setUsers] = useState([])
     let emptyNft = { ...props.nft }
     const [nft, setNft] = useState(emptyNft)
 
@@ -21,7 +26,7 @@ const Add = (props) => {
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formAddNft">
+                <Form.Group className="mb-3">
 
                     <Form.Label htmlFor='name'>Name:</Form.Label>
                     <Form.Control type='text' name='name' onChange={handleChange} value={nft.name} />

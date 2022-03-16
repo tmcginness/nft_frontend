@@ -5,6 +5,14 @@ import Edit from './components/EditNft'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Card from 'react-bootstrap/Card';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { EditNft } from "./pages/EditNft";
+import { Profile } from "./pages/Profile";
+import { AddNft } from "./pages/AddNft";
+import { ShowNft } from "./pages/Show";
+import { NavBar } from "./components/NavBar";
 
 
 const App = props => {
@@ -51,31 +59,25 @@ const App = props => {
 
   return (
     <>
-      <div className="container">
-        <h1>Add a New NFT</h1>
-        <Add handleCreate={handleCreate} />
-        <div id="nfts">
-          {nfts.map((nft) => {
-            return (
-              <Card style={{ width: '18rem' }}>
-                <Card.Body>
 
-                  <div className="nft" key={nft.id}>
-                    <img src={nft.image} alt="" />
+      <header className='header'>
 
-                    <Card.Title>Name: {nft.name}</Card.Title>
+      </header>
+     <div className="container">
+        <BrowserRouter>
+        <NavBar />
+            <Routes>
+              <Route exact path="/showNft" element={<ShowNft />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/addNft" element={<AddNft />} />
+              <Route exact path="/editNft" element={<EditNft />} />
+              <Route exact path="/home" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
 
-                    <Card.Subtitle><h5>Price: {nft.price}</h5></Card.Subtitle>
-                    <p>Description: {nft.description}</p>
-                    <p>Properties: [{nft.properties}]</p>
-                    <Edit handleUpdate={handleUpdate} nft={nft} />
-                    <button onClick={handleDelete} value={nft.id}>Delete</button>
-                  </div>
-                </Card.Body>
-              </Card>
-            )
-          })}
-        </div>
+
+
+
       </div>
     </>
   )
