@@ -12,7 +12,7 @@ const App = props => {
   const [nfts, setNfts] = useState([])
 
   const getNfts = () => {
-    axios.get('http://localhost:8000/api/nfts')
+    axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
       .then(
         (response) => setNfts(response.data),
         (error) => console.error(error))
@@ -21,7 +21,7 @@ const App = props => {
   }
 
   const handleCreate = (addNft) => {
-    axios.post('http://localhost:8000/api/nfts', addNft)
+    axios.post('https://boiling-island-41564.herokuapp.com/api/nfts', addNft)
       .then((response) => {
         console.log(response);
         setNfts([...nfts, response.data])
@@ -29,14 +29,14 @@ const App = props => {
   }
 
   const handleDelete = (e) => {
-    axios.delete('http://localhost:8000/api/nfts/' + e.target.value)
+    axios.delete('https://boiling-island-41564.herokuapp.com/api/nfts/' + e.target.value)
       .then((response) => {
         getNfts()
       })
   }
 
   const handleUpdate = (editNft) => {
-    axios.put('http://localhost:8000/api/nfts/' + editNft.id, editNft)
+    axios.put('https://boiling-island-41564.herokuapp.com/api/nfts/' + editNft.id, editNft)
       .then((response) => {
         setNfts(nfts.map((nft) => {
           return nft.id !== editNft.id ? nft : editNft
