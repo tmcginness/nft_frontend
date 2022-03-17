@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { EditNft } from "./pages/EditNft";
+
 import { Profile } from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
 import { ShowNft } from "./pages/Show";
@@ -68,7 +68,7 @@ const App = props => {
           <Route exact path="/showNft" element={<ShowNft />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/addNft" element={<AddNft />} />
-          <Route exact path="/editNft" element={<EditNft />} />
+          
           <Route exact path="/home" element={<Home />} />
         </Routes>
       </div>
