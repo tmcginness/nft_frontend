@@ -18,8 +18,8 @@ export const NavBar = (props) => {
 
   return (
     <>
-      <div className="nav">
-        <div className="navBottom">
+
+        <div className="nav">
           <Link className="links" to="/">
             Home
           </Link>
@@ -29,15 +29,13 @@ export const NavBar = (props) => {
           <Link className="links" to="/profile">
             Profile
           </Link>
-          <Link className="links" to="/editNft">
-            Edit
-          </Link>
+          
           <Link className="links" to="/addNft">
             Add
           </Link>
 
         </div>
-      </div>
+
 
     </>
   );

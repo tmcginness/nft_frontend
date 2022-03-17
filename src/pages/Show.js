@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Edit from '../components/EditNft'
 import NftCard from '../components/NftCard'
+import Modal from '../components/Modal'
 
 
 export const ShowNft = () => {
 
   const [nfts, setNfts] = useState([])
 
-  const [toggle, setToggle] = useState(false);
-
+  const [toggle1, setToggle1] = useState(false);
+  const [open, setOpen] = useState(false);
   const getNfts = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
       .then(
@@ -21,9 +22,9 @@ export const ShowNft = () => {
 
 
 
-     const show = () => {
-       setToggle((prevState) => !prevState);
-     }
+  const show = () => {
+    setToggle1((prevState) => !prevState);
+  }
 
 
 
@@ -61,35 +62,31 @@ export const ShowNft = () => {
     getNfts()
 
   }, [])
+  // <img src={nft.image} alt="" />
+  //
+  // <div>Name: {nft.name}</div>
+  //
+  // <div><h5>Price: {nft.price}</h5></div>
+  // <p>Description: {nft.description}</p>
+  // <p>Properties: [{nft.properties}]</p>
+  // <NftCard nft={nft} />
+  // <Edit handleUpdate={handleUpdate} nft={nft} />
+  // <button onClick={handleDelete} value={nft.id}>Delete</button>
 
   return (
     <>
-    <h1>Show NFTs</h1>
-
-
-    {nfts.map((nft) => {
-      return (
-
-
-        <div key={nft.id} style={{ width: '18rem' }}>
-          <div>
-
-            <div className="nft" >
-              <img src={nft.image} alt="" />
-
-              <div>Name: {nft.name}</div>
-
-              <div><h5>Price: {nft.price}</h5></div>
-              <p>Description: {nft.description}</p>
-              <p>Properties: [{nft.properties}]</p>
+      <h1>Show NFTs</h1>
+      <div className="cardContainer">
+        {nfts.map((nft) => {
+          return (
+            <div className="nftBox" key={nft.id}  >
               <NftCard nft={nft} />
               <Edit handleUpdate={handleUpdate} nft={nft} />
-              <button onClick={handleDelete} value={nft.id}>Delete</button>
-            </div>
-          </div>
-        </div>
-      )
-    })}
+              </div>
+
+          )
+        })}
+      </div>
     </>
   )
 };
