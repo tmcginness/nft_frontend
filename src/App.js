@@ -59,26 +59,20 @@ const App = props => {
 
   return (
     <>
-
+    <BrowserRouter>
       <header className='header'>
-
-      </header>
-     <div className="container">
-        <BrowserRouter>
         <NavBar />
-            <Routes>
-              <Route exact path="/showNft" element={<ShowNft />} />
-              <Route exact path="/profile" element={<Profile />} />
-              <Route exact path="/addNft" element={<AddNft />} />
-              <Route exact path="/editNft" element={<EditNft />} />
-              <Route exact path="/home" element={<Home />} />
-            </Routes>
-          </BrowserRouter>
-
-
-
-
+      </header>
+      <div className="container1">
+        <Routes>
+          <Route exact path="/showNft" element={<ShowNft />} />
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/addNft" element={<AddNft />} />
+          <Route exact path="/editNft" element={<EditNft />} />
+          <Route exact path="/home" element={<Home />} />
+        </Routes>
       </div>
+        </BrowserRouter>
     </>
   )
 }
