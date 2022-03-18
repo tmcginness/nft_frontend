@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState , useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Modal from '../components/Modal'
 
 
@@ -10,9 +10,9 @@ const NftCard = (props) => {
   // console.log('show' + open);
   const [toggle, setToggle] = useState(false);
 
-  return(
+  return (
     <>
-      <div className='charBox' onClick={()=> {setToggle((prevState) => !prevState);;}} >
+      <div className='charBox' onClick={() => { setToggle((prevState) => !prevState);; }} >
         <div className="hover-point" id="point1"></div>
         <div className="hover-point" id="point2"></div>
         <div className="hover-point" id="point3"></div>
@@ -24,7 +24,7 @@ const NftCard = (props) => {
         <div className="box-contents">
           <h4 className='charName' >{nft.name}</h4>
           <div className='charImgBox ' >
-            <img className='charImg' src={nft.image}/>
+            <img className='charImg' src={nft.image} />
           </div>
         </div>
         <Modal nft={nft} open={toggle} />

@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
-import { ShowNft } from "./pages/Show";
+import ShowNft from "./pages/Show";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { NavBar } from "./components/NavBar";
@@ -72,7 +72,7 @@ const App = props => {
           <Routes>
 
             <Route exact path="/register" element={<Register />} />
-            <Route exact path="/showNft" element={<ShowNft />} />
+            <Route exact path="/showNft" element={<ShowNft nft={nfts} setNfts={setNfts} />} />
 
             <Route exact path="/profile" element={<Profile />} />
 

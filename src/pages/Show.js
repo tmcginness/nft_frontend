@@ -7,12 +7,13 @@ import Collections from '../components/Collections'
 import { FcSearch } from 'react-icons/fc';
 
 
-export const ShowNft = () => {
+const ShowNft = (props) => {
 
   const [nfts, setNfts] = useState([])
 
   const [toggle1, setToggle1] = useState(false);
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("")
 
 
   const [name, setName] = useState("");
@@ -37,7 +38,7 @@ export const ShowNft = () => {
       .then((response) => {
         console.log(response);
         setNfts([...nfts, response.data])
-    })
+      })
   }
 
   const handleDelete = (e) => {
@@ -57,43 +58,44 @@ export const ShowNft = () => {
   }
 
   const handleSearch = async (e) => {
-      e.preventDefault();
-      getNfts()
-      if (name !== "") {
+    e.preventDefault();
+    getNfts()
+    if (name !== "") {
 
-        nfts.map((nft) => {
-          if (nft.name== name){
+      nfts.map((nft) => {
+        if (nft.name == name) {
 
-            // setResults( ...results, [nft])
-            results.push(nft)
-            console.log('here '+ results);
-          }
-        })
-      }
-      if (collection !== "ANY") {
-        nfts.map((nft) => {
-          if (nft.collection== collection){
-            // setResults(nft)
-            results.push(nft)
-          }
-        })
-      }else if (collection == "ANY") {
-        nfts.map((nft) => {
-            results.push(nft)
+          // setResults( ...results, [nft])
+          results.push(nft)
+          console.log('here ' + results);
+        }
+      })
+    }
+    if (collection !== "ANY") {
+      nfts.map((nft) => {
+        if (nft.collection == collection) {
+          // setResults(nft)
+          results.push(nft)
+        }
+      })
+    } else if (collection == "ANY") {
+      nfts.map((nft) => {
+        results.push(nft)
 
-          })}
-      if (results.length <0) {
-        setNoResults(false);
+      })
+    }
+    if (results.length < 0) {
+      setNoResults(false);
 
-      } else {
-        setNoResults(true);
+    } else {
+      setNoResults(true);
 
-        console.log('results len '+ results.length);
-      }
-    };
-console.log('results len '+ results.length);
+      console.log('results len ' + results.length);
+    }
+  };
+  console.log('results len ' + results.length);
 
-console.log('here '+ collection);
+  console.log('here ' + collection);
   useEffect(() => {
     getNfts()
 
@@ -112,86 +114,29 @@ console.log('here '+ collection);
   return (
     <>
 
-      <h1>Show NFTs</h1>
-      <div className="searchContainer">
-        <form action="">
-          <input type="text" placeholder="Search.." name="search"/>
-          <button type="submit">< FcSearch /></button>
-        </form>
+      <h1 className="containerTitle">Looking For An NFT? Check Out Below!</h1>
+      <div className="searchBar">
+        <input placeholder="Search For An NFT Name, Collection, or Property" onChange={event => setQuery(event.target.value)} />
       </div>
 
-      <div className="searchFormBox">
-          <form className="searchForm">
-            <div className="pairs">
-              <label htmlFor="name">Name</label>
-              <input
-                className="input"
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-
-            <div className="pairs">
-              <label htmlFor="genre">Collection</label>
-              <select
-                className="input"
-                value={collection}
-                onChange={(e) => setCollection(e.target.value)}
-              >
-                <option key="select-ANY" value="ANY">
-                  ANY
-                </option>
-                {Collections.map((col) => (
-                  <option key={"select-" + col} value={col}>
-                    {col}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button className="buttForm1" onClick={handleSearch}>
-              Search
-            </button>
-          </form>
-        </div>
-
-
-        {  noResults ?
-          <div>
-          <h1>results</h1>
-          <div className="cardContainer">
-          {results.map((nft, index) => {
-           return(
-             <div className="nftBox" key={nft.id}   >
-               <NftCard nft={nft} />
-
-               </div>
-
-
-          )}) }
-          </div>
-          </div>
-        :
-
-         <>
-         <div className="cardContainer">
-           {nfts.map((nft) => {
-             return (
-               <div className="nftBox" key={nft.id}  >
-                 <NftCard nft={nft} />
-                 <Edit handleUpdate={handleUpdate} nft={nft} />
-                 </div>          )
-           })}
-         </div>
-
-
-
-        </>
-      }
-
-
+      <div className="cardContainer">
+        {props.nft.filter(nft => {
+          if (query === '') {
+            return nft;
+          } else if (nft.name.toLowerCase().includes(query.toLowerCase()) || nft.collection.toLowerCase().includes(query.toLowerCase()) || nft.properties.toLowerCase().includes(query.toLowerCase())) {
+            return nft;
+          }
+        }).map((nft) => {
+          return (
+            <div className="nftBox" key={nft.id}  >
+              <NftCard nft={nft} />
+              <Edit handleUpdate={handleUpdate} nft={nft} />
+            </div>)
+        })}
+      </div>
 
     </>
   )
 };
+
+export default ShowNft;
