@@ -8,16 +8,23 @@ import Card from 'react-bootstrap/Card';
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-
+import { SignIn } from "./pages/SignIn";
 import { Profile } from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
 import { ShowNft } from "./pages/Show";
 import { NavBar } from "./components/NavBar";
+import LoginButton from './components/LoginButton'
+import LogoutButton from './components/LogoutButton'
+import { useAuth0 } from "@auth0/auth0-react";
+
+
+
 
 
 const App = props => {
 
   const [nfts, setNfts] = useState([])
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   const getNfts = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
@@ -59,20 +66,25 @@ const App = props => {
 
   return (
     <>
-    <BrowserRouter>
-      <header className='header'>
-        <NavBar />
-      </header>
-      <div className="container1">
-        <Routes>
-          <Route exact path="/showNft" element={<ShowNft />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/addNft" element={<AddNft />} />
-          
-          <Route exact path="/home" element={<Home />} />
-        </Routes>
-      </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <header className='header'>
+          <NavBar />
+        </header>
+        <div className="container1">
+          <Routes>
+            <Route exact path="/showNft" element={<ShowNft />} />
+            {
+              (isAuthenticated == true) ?
+                <Route exact path="/profile" element={<Profile />} /> :
+                <Route exact path="/profile" element={<SignIn />} />
+            }
+
+            <Route exact path="/addNft" element={<AddNft />} />
+
+            <Route exact path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </>
   )
 }

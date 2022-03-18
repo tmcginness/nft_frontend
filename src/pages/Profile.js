@@ -4,11 +4,12 @@ import Edit from '../components/EditNft'
 import NftCard from '../components/NftCard'
 import Modal from '../components/Modal'
 import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from 'react-icons/io';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
-
-export const Profile= () => {
+export const Profile = () => {
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
 
   const [nfts, setNfts] = useState([])
 
@@ -43,58 +44,63 @@ export const Profile= () => {
     getNfts()
 
   }, [])
+  console.log(user);
+
   return (
-    <>
-    <h1>Profile</h1>
-    <div className='proContainer'>
-      <div className='coverDiv'>
-        <div className='proPicDiv'>
-          <img className='proPic' src= '../../proPic.webp'/>
-        </div>
-      </div>
-      <div className='proContent'>
-        <div className='leftContent' style={{ width: toggle2 ? "500px" : "50px" }}>
-        <div className="iconArrowDiv" onClick={(event) => show()}>
-          {toggle2 ? <IoMdArrowDropleftCircle className="iconArrow"/> : <IoMdArrowDroprightCircle className="iconArrow" /> }
-        </div>
-        <div className='yourData' style={{ marginLeft: toggle2 ? "10px" : "50px" }}>
-        <h2>Your Data</h2>
-        <div className='dataContent'>
-        Your Data
-        </div>
-        <div className='dataContent'>
-        Your Data
-        </div>
-        <div className='dataContent'>
-        Your Data
-        </div>
-        <div className='dataContent'>
-        Your Data
-        </div>
-        </div>
-        </div>
-        <div className='rightContent'>
-        <div className='rightTop'>
+    isAuthenticated && (
+      <>
+        <h1>Profile</h1>
+        <div className='proContainer'>
+          <div className='coverDiv'>
+            <div className='proPicDiv'>
+              <img className='proPic' src={user.picture} />
 
-        </div>
-        <div className='rightBottom'>
-        <div className='rightTitle'>
-        <h2>My Collection</h2>
-        </div>
-        {nfts.map((nft) => {
-          return (
-            <div className="nftBox" key={nft.id}  >
-              <NftCard nft={nft} />
-              <Edit handleUpdate={handleUpdate} nft={nft} />
+            </div>
+          </div>
+          <div className='proContent'>
+            <div className='leftContent' style={{ width: toggle2 ? "500px" : "50px" }}>
+              <div className="iconArrowDiv" onClick={(event) => show()}>
+                {toggle2 ? <IoMdArrowDropleftCircle className="iconArrow" /> : <IoMdArrowDroprightCircle className="iconArrow" />}
               </div>
-
-          )
-        })}
+              <div className='yourData' style={{ marginLeft: toggle2 ? "10px" : "50px" }}>
+                <h2>{user.name}'s Data</h2>
+                <div className='dataContent'>
+                  Your Data
         </div>
+                <div className='dataContent'>
+                  Your Data
         </div>
-      </div>
+                <div className='dataContent'>
+                  Your Data
+        </div>
+                <div className='dataContent'>
+                  Your Data
+        </div>
+              </div>
+            </div>
+            <div className='rightContent'>
+              <div className='rightTop'>
 
-    </div>
-    </>
+              </div>
+              <div className='rightBottom'>
+                <div className='rightTitle'>
+                  <h2>{user.name}'s Collection</h2>
+                </div>
+                {nfts.map((nft) => {
+                  return (
+                    <div className="nftBox" key={nft.id}  >
+                      <NftCard nft={nft} />
+                      <Edit handleUpdate={handleUpdate} nft={nft} />
+                    </div>
+
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </>
+    )
   )
 };

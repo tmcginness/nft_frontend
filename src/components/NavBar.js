@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
 
 export const NavBar = (props) => {
 
@@ -19,22 +21,24 @@ export const NavBar = (props) => {
   return (
     <>
 
-        <div className="nav">
-          <Link className="links" to="/">
-            Home
+      <div className="nav">
+        <Link className="links" to="/">
+          Home
           </Link>
-          <Link className="links" to="/showNft">
-            Show
+        <Link className="links" to="/showNft">
+          Show
           </Link>
-          <Link className="links" to="/profile">
-            Profile
-          </Link>
-          
-          <Link className="links" to="/addNft">
-            Add
+        <Link className="links" to="/profile">
+          Profile
           </Link>
 
-        </div>
+        <Link className="links" to="/addNft">
+          Add
+          </Link>
+        <LoginButton />
+        <LogoutButton />
+
+      </div>
 
 
     </>
