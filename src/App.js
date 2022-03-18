@@ -11,7 +11,11 @@ import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
 import { ShowNft } from "./pages/Show";
+import { Register } from "./pages/Register";
+import { Login } from "./pages/Login";
 import { NavBar } from "./components/NavBar";
+import {UserProvider} from './Contexts/UserContext'
+
 
 
 const App = props => {
@@ -58,19 +62,26 @@ const App = props => {
 
   return (
     <>
+    
     <BrowserRouter>
       <header className='header'>
         <NavBar />
       </header>
       <div className="container1">
         <Routes>
+
+          <Route exact path="/register" element={<Register />} />
           <Route exact path="/showNft" element={<ShowNft />} />
+
           <Route exact path="/profile" element={<Profile />} />
+
           <Route exact path="/addNft" element={<AddNft />} />
           <Route exact path="/home" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
       </div>
         </BrowserRouter>
+
     </>
   )
 }
