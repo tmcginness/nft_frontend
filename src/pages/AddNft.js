@@ -44,34 +44,34 @@ const [nfts, setNfts] = useState([])
   useEffect(() => {
     getNfts()
   }, [])
-
+  // {nfts.map((nft) => {
+  //   return (
+  //
+  //     <div key={nft.id} style={{ width: '18rem' }}>
+  //       <div>
+  //
+  //         <div className="nft" >
+  //           <img src={nft.image} alt="" />
+  //
+  //           <div>Name: {nft.name}</div>
+  //
+  //           <div><h5>Price: {nft.price}</h5></div>
+  //           <p>Description: {nft.description}</p>
+  //           <p>Properties: [{nft.properties}]</p>
+  //           <Edit handleUpdate={handleUpdate} nft={nft} />
+  //           <button onClick={handleDelete} value={nft.id}>Delete</button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // })}
   return (
     <>
     <h1>Add</h1>
     <div >
       <Add handleCreate={handleCreate} />
-      {nfts.map((nft) => {
-        return (
 
-          <div key={nft.id} style={{ width: '18rem' }}>
-            <div>
-
-              <div className="nft" >
-                <img src={nft.image} alt="" />
-
-                <div>Name: {nft.name}</div>
-
-                <div><h5>Price: {nft.price}</h5></div>
-                <p>Description: {nft.description}</p>
-                <p>Properties: [{nft.properties}]</p>
-                <Edit handleUpdate={handleUpdate} nft={nft} />
-                <button onClick={handleDelete} value={nft.id}>Delete</button>
-              </div>
-            </div>
-          </div>
-        )
-      })}
     </div>
     </>
   )
-};
+}

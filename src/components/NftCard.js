@@ -7,7 +7,7 @@ const NftCard = (props) => {
 
   const [nft, setnft] = useState(props.nft)
   const [open, setOpen] = useState(false);
-  console.log('show' + open);
+  // console.log('show' + open);
   const [toggle, setToggle] = useState(false);
 
   return(
