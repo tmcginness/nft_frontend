@@ -146,8 +146,8 @@ export const Profile = (props) => {
                               return (
 
                                 <div className="nftBox" key={nft.id}  >
-                                  <NftCard nft={nft} />
-                                  <Edit handleUpdate={handleUpdate} nft={nft} />
+                                  <NftCard handleUpdate={handleUpdate} nft={nft} />
+
                                 </div>
 
                               )
