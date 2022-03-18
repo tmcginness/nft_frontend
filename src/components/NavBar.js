@@ -1,26 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { useState, useEffect } from "react";
-import LoginButton from './LoginButton'
-import LogoutButton from './LogoutButton'
 
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from '../Contexts/UserContext'
 export const NavBar = (props) => {
 
-  let user = {
-    image: '',
-    fname: '',
-    lname: '',
-    password: '',
-    collection: '',
-    created: '',
-    favorited: '',
-    offers: '',
-    bio: ''
-  }
-  const [users, setUsers] = useState(user)
 
-  const [currentUser, setCurrentUser] = useState(user)
-  let navigate = useNavigate();
+  const [users ,setUsers] = useState()
+
+// const [currentUser ,setCurrentUser] = useState(user)
+const [currentUser,setCurrentUser] = useContext(UserContext)
+let navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
@@ -44,21 +34,28 @@ export const NavBar = (props) => {
   const loggedOut = async () => {
     console.log('logged out');
     console.log(currentUser.id);
-    handleUpdate(currentUser)
+    handleUpdate(users)
+
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    users.map((user) => {
-      if (user.bio == 'currentUser') {
-        setCurrentUser({ ...user, bio: 'false' })
-        const response = loggedOut()
-      }
+  const handleSubmit =  (e) => {
+      e.preventDefault();
+      // setCurrentUser([])
+      axios.get('https://boiling-island-41564.herokuapp.com/api/user')
+      .then(
+            (response) =>
+            response.data.map((user) => {
+            if(user.bio == 'currentUser'){
+              setUsers({ ...user, bio: 'false'})
+              // setCurrentUser([])
+              const response =  loggedOut()
 
-    })
-    console.error('logged out pressed ' + currentUser.fname)
-  }
+        }
+
+      }))
+      console.error('logged out pressed '+ currentUser.fname)
+    }
 
 
   useEffect(() => {
@@ -90,9 +87,13 @@ export const NavBar = (props) => {
         <Link className="links" to="/addNft">
           Add
           </Link>
-        <form onSubmit={handleSubmit}>
-          <input className="buttForm1" type='submit' value='Logout' />
-        </form>
+
+          {currentUser.bio == 'currentUser' ?
+          <form onSubmit={handleSubmit}>
+            <input className="buttForm1" type='submit' value='Logout'/>
+          </form>
+          :null}
+
 
 
 

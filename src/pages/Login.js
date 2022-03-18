@@ -23,12 +23,13 @@ const [username, setUsername] = useState("");
 const [users ,setUsers] = useState(user)
 let navigate = useNavigate();
 
+const [currentUser,setCurrentUser] = useContext(UserContext)
 
 
-const [currentUser,setCurrentUser] = useState([])
+// const [currentUser,setCurrentUser] = useState([])
 
 
-
+console.log('bio =' +currentUser.bio);
 
   const getUsers = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
@@ -69,27 +70,27 @@ const [currentUser,setCurrentUser] = useState([])
     console.log(users.id);
     logout(currentUser)
   }
-
   const handleSubmit = async (e) => {
       e.preventDefault();
-      getUsers()
-      console.log('submit hit');
-      // attempt to login
-      users.map( (user)  =>  {
+      axios.get('https://boiling-island-41564.herokuapp.com/api/user')
+      .then(
+        (response) =>
+        response.data.map((user)  =>  {
+          if(user.fname === username && user.password == password){
 
-        if(user.fname === username && user.password == password){
-          getUsers()
-             setCurrentUser({ ...user, bio: 'currentUser'})
-             console.log('this is cu '+ currentUser.bio)
-             if(currentUser.bio== undefined){
-               handleSubmit()
-             }else {
+               setCurrentUser({ ...user, bio: 'currentUser'})
+               console.log('this is cu '+ currentUser.bio)
+               if(currentUser.bio== undefined){
+                 handleSubmit(e)
+               }else {
 
-            console.log('this is now '+ currentUser.bio)
-            login()
-             }
+              console.log('this is now '+ currentUser.bio)
+              login()
+               }
+        }}),
+        (err) => console.error(err)
+      )
 
-       }
          if(user.bio == 'currentUser'){
            setCurrentUser({ ...user, bio: 'false'})
            const response =  loggedOut()
@@ -97,16 +98,44 @@ const [currentUser,setCurrentUser] = useState([])
          }
 
 
-      })
+      };
+
+  // const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     getUsers()
+  //     console.log('submit hit');
+  //     // attempt to login
+  //     users.map( (user)  =>  {
+  //       if(user.fname === username && user.password == password){
+  //         getUsers()
+  //            setCurrentUser({ ...user, bio: 'currentUser'})
+  //            console.log('this is cu '+ currentUser.bio)
+  //            if(currentUser.bio== undefined){
+  //              handleSubmit()
+  //            }else {
+  //
+  //           console.log('this is now '+ currentUser.bio)
+  //           login()
+  //            }
+  //
+  //      }
+  //        if(user.bio == 'currentUser'){
+  //          setCurrentUser({ ...user, bio: 'false'})
+  //          const response =  loggedOut()
+  //          console.log('submit hit');
+  //        }
+  //
+  //
+  //     })
 
 
 
 
-
+      //
       // if successful, move to home page
-
+      //
       // if unsuccessful, redirect back to login with error message
-    };
+    // };
 
 
   useEffect(() => {
@@ -116,13 +145,8 @@ const [currentUser,setCurrentUser] = useState([])
 
   return (
     <>
-    <h1>Login</h1>
+    <h1 className='title'>Login</h1>
 
-
-    <Link to={{
-      pathname: '/profile',
-      state: {id: 1, name: 'sabaoon', shirt: 'green'}
-    }} >Learn More</Link>
 
 
     <form onSubmit={handleSubmit}>

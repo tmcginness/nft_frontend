@@ -1,36 +1,33 @@
-import {useState, createContext} from 'react'
+import {useState, createContext, useEffect} from 'react'
 
 import axios from 'axios'
 
 export const UserProvider = (props) => {
 
-  const [user, setUser] = useState("");
-  const [currentUser ,setCurrentUser] = useState([{
-      image :'',
-      fname :'',
-      lname :'',
-      password :'',
-      collection :'',
-      created :'',
-      favorited :'',
-      offers :'',
-      bio :'',
+  // const [user, setUser] = useState("");
+  const [currentUser ,setCurrentUser] = useState([])
 
-  }])
+console.log('context'+ props.fname)
   const getUsers = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
     .then(
-      (response) => setUser(response.data),
+      (response) =>
+      response.data.map((user) => {
+        if (user.bio == 'currentUser'){
+        // setCurrentUser(user)
+        setCurrentUser(user)
+        }
+      }),
       (err) => console.error(err)
     )
     .catch((error) => console.error(error))
-    user.map((user) => {
-      if (user.bio == 'currentUser'){
-      // setCurrentUser(user)
-      setCurrentUser(user)
-      }
-    })
   }
+
+
+  useEffect(() => {
+    getUsers()
+
+  }, [])
 
   return (
     <UserContext.Provider
