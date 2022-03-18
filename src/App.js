@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Profile } from "./pages/Profile";
+import Profile from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
 import ShowNft from "./pages/Show";
 import { Register } from "./pages/Register";
@@ -74,7 +74,7 @@ const App = props => {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/showNft" element={<ShowNft nft={nfts} setNfts={setNfts} />} />
 
-            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/profile" element={<Profile nft={nfts} setNfts={setNfts} />} />
 
             <Route exact path="/addNft" element={<AddNft />} />
             <Route exact path="/home" element={<Home />} />

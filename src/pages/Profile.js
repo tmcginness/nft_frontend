@@ -9,7 +9,7 @@ import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from 'react-icons/i
 
 
 
-export const Profile = (props) => {
+const Profile = (props) => {
 
   const [nfts, setNfts] = useState([])
   const [userNfts, setUserNfts] = useState([])
@@ -18,8 +18,10 @@ export const Profile = (props) => {
   let currUser = ''
   const [isLoading, setIsLoading] = useState(true);
 
+
   const [toggle1, setToggle1] = useState(false);
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState('x')
 
 
   const getNfts = () => {
@@ -97,6 +99,8 @@ export const Profile = (props) => {
       console.log('profile ' + currentUser.fname);
       setIsLoading(false);
     }, [])
+  console.log(currentUser.fname + 'now');
+
   return (
     <>
       {!isLoading && (
@@ -142,16 +146,22 @@ export const Profile = (props) => {
                             <div className='rightTitle'>
                               <h2>{user.fname}'s Collection</h2>
                             </div>
-                            {nfts.map((nft) => {
-                              return (
+                            <div className="cardContainer">
+                              {props.nft.filter(nft => {
+                                if (query === '') {
+                                  return nft;
 
-                                <div className="nftBox" key={nft.id}  >
-                                  <NftCard nft={nft} />
-                                  <Edit handleUpdate={handleUpdate} nft={nft} />
-                                </div>
-
-                              )
-                            })}
+                                } else if (nft.owner.toLowerCase() == user.fname.toLowerCase()) {
+                                  return nft;
+                                }
+                              }).map((nft) => {
+                                return (
+                                  <div className="nftBox" key={nft.id}  >
+                                    <NftCard nft={nft} />
+                                    <Edit handleUpdate={handleUpdate} nft={nft} />
+                                  </div>)
+                              })}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -167,3 +177,5 @@ export const Profile = (props) => {
     </>
   )
 };
+
+export default Profile
