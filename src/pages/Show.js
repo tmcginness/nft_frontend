@@ -112,7 +112,7 @@ console.log('here '+ collection);
   return (
     <>
 
-      <h1>Show NFTs</h1>
+      <h1 className='title'>Show NFTs</h1>
       <div className="searchContainer">
         <form action="">
           <input type="text" placeholder="Search.." name="search"/>
