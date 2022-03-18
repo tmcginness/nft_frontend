@@ -18,9 +18,7 @@ const ShowNft = (props) => {
 
   const [name, setName] = useState("");
   const [collection, setCollection] = useState("ANY");
-  const [results, setResults] = useState([]);
-  const [noResults, setNoResults] = useState(false);
-  // let results = []
+
 
   const getNfts = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
@@ -56,46 +54,6 @@ const ShowNft = (props) => {
         }))
       })
   }
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    getNfts()
-    if (name !== "") {
-
-      nfts.map((nft) => {
-        if (nft.name == name) {
-
-          // setResults( ...results, [nft])
-          results.push(nft)
-          console.log('here ' + results);
-        }
-      })
-    }
-    if (collection !== "ANY") {
-      nfts.map((nft) => {
-        if (nft.collection == collection) {
-          // setResults(nft)
-          results.push(nft)
-        }
-      })
-    } else if (collection == "ANY") {
-      nfts.map((nft) => {
-        results.push(nft)
-
-      })
-    }
-    if (results.length < 0) {
-      setNoResults(false);
-
-    } else {
-      setNoResults(true);
-
-      console.log('results len ' + results.length);
-    }
-  };
-  console.log('results len ' + results.length);
-
-  console.log('here ' + collection);
   useEffect(() => {
     getNfts()
 
