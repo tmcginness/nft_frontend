@@ -3,6 +3,11 @@
   padding: 0;
   margin: 0;
 }
+.mainDiv{
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
 .header{
   display: flex;
   width: 100%;
@@ -27,7 +32,7 @@
   width: 300px;
   height: 350px;
   margin: 10px;
-  border: 2px solid rgb(20, 116, 0);
+  border: 2px solid rgb(0, 115, 221);
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5) inset,
     -5px -5px 10px rgba(0, 0, 0, 0.5) inset;
@@ -53,11 +58,15 @@ cursor: pointer;
 }
 .nftBox{
   /* background-color: green; */
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   width: 400px;
-  height: 500px;
+  min-height: 500px;
   padding: 10px;
+  align-items: center;
 }
+
 .nftImg{
   width: 200px;
   height: 200px;
@@ -140,7 +149,7 @@ cursor: pointer;
   left: 0;
   box-shadow: 0 0 50px rgba(0, 0, 0, .3);
   transition: .5s ease;
-  border: 1px solid rgb(42, 215, 6);
+  border: 1px solid rgb(0, 115, 221);
   margin: 30px;
   padding: 10px;
   border-radius: 10px;
@@ -286,7 +295,7 @@ border-radius: 18px;
   overflow-y: auto;
 }
 .propContainer{
-  width: 100vw;
+  width: 100%;
   max-height: 150px;
   overflow-y: auto;
   background-color: rgba(0, 0, 0, .8);
@@ -351,33 +360,38 @@ border-radius: 18px;
   flex-direction: column;
   margin-right: 0;
   margin-left: 0;
-  padding: 0;
-  width: 100vw;
+  padding:20px;
+  width: 100%;
   min-height: 100vh;
   /* background-color: blue; */
   align-items: center;
 
 }
+
 .proContainer{
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100%;
+
   /* background-color: pink; */
 }
 .coverDiv{
   display: flex;
   height: 200px;
-  width: 100%;
+  max-width: 100%;
   justify-content: center;
   background-color: blue;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8) inset,
+    -5px -5px 20px rgba(0, 0, 0, 0.8) inset;
+
 }
 .proPicDiv{
   height: 250px;
   width: 250px;
   background-color: white;
   border-radius: 50%;
-  position: relative;
+  position: absolute;
   margin-top: 50px;
   border: 2px solid rgb(0, 115, 221);
   overflow: hidden;
@@ -394,9 +408,9 @@ border-radius: 18px;
 }
 .iconArrowDiv{
   display: flex;
-  width: 30px;
+  width: 60px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 10px;
   margin-left: auto;
   margin-right: 10px;
   margin-top: 10px;
@@ -405,14 +419,14 @@ border-radius: 18px;
   border: 2px solid rgb(0, 115, 221);
 }
 .iconArrow{
-  color: rgba(0, 0, 0, 0.63);
+  color: rgb(0, 115, 221);
   width: 30px;
   height: 30px;
-
 }
 .iconArrow:hover{
   transform: scale(1.2);
   color: rgb(42, 215, 6);
+  cursor: pointer;
 }
 .leftContent{
     width: 40%;
@@ -432,11 +446,70 @@ border-radius: 18px;
   overflow-x: hidden;
 }
 .dataContent{
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
   margin-top: 10px;
-
+  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+.nftImg2{
+  width: 200px;
+  max-height: 200px;
+  border-radius: 15px;
+  margin: 10px
+}
+.nftImg2:hover{
+  transform: scale(1.1);
+  z-index: 2;
+  cursor: pointer;
+}
+.nftBox2{
+  /* background-color: green; */
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+
+}
+.infoName{
+  width: 100%;
+  height: 20%;
+}
+.infoBox{
+  width: calc(600px*7);
+  height: 100%;
+  overflow: hidden;
+}
+.infoBoxSlide{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  animation: scroll 30s linear infinite;
+  /* background-color: red; */
+}
+.infoBoxSlide:hover{
+  animation-play-state: paused;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-605px * 4));
+  }
+}
+.title{
+  margin: 10px auto;
+  font-family: 'Poller One', cursive;
+  color: rgb(0, 115, 221);
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.42),
+    -5px -5px 5px rgba(0, 0, 0, 0.42);
+}
+.namePro{
+  color:rgb(217, 7, 167);
+}
+
 .rightContent{
   display: flex;
   flex-direction: column;
@@ -472,4 +545,6 @@ border-radius: 18px;
   height: 75px;
   align-items: center;
   justify-content: center;
+  text-transform: capitalize;
+  font-family: 'Poller One', cursive;
 }
