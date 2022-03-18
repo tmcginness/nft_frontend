@@ -10,7 +10,7 @@ import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from 'react-icons/i
 
 
 
-export const Profile= (props) => {
+export const Profile = (props) => {
 
   const [nfts, setNfts] = useState([])
   const [userNfts, setUserNfts] = useState([])
@@ -23,6 +23,7 @@ export const Profile= (props) => {
   const [currentUser,setCurrentUser] = useContext(UserContext)
 
   let navigate = useNavigate();
+
 
     // console.log('profile user ' + currentUser.fname);
 
@@ -61,7 +62,7 @@ export const Profile= (props) => {
     //     })
     // }
 
-     // console.log('profile ' + currUser);
+  // console.log('profile ' + currUser);
 
   const handleUpdate = (editNft) => {
     axios.put('https://boiling-island-41564.herokuapp.com/api/nfts/' + editNft.id, editNft)
@@ -91,6 +92,7 @@ export const Profile= (props) => {
 
   useEffect(
     async () => {
+
     getNfts()
     getUsers()
     // getCurUsers()

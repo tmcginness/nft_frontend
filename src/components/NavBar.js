@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
+
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../Contexts/UserContext'
 export const NavBar = (props) => {
@@ -16,11 +17,11 @@ let navigate = useNavigate();
 
   const getUsers = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
-    .then(
-      (response) => setUsers(response.data),
-      (err) => console.error(err)
-    )
-    .catch((error) => console.error(error))
+      .then(
+        (response) => setUsers(response.data),
+        (err) => console.error(err)
+      )
+      .catch((error) => console.error(error))
 
   }
   const handleUpdate = (editUser) => {
@@ -36,6 +37,7 @@ let navigate = useNavigate();
     handleUpdate(users)
 
   }
+
 
   const handleSubmit =  (e) => {
       e.preventDefault();
@@ -67,24 +69,25 @@ let navigate = useNavigate();
   return (
     <>
 
-        <div className="nav">
+      <div className="nav">
 
-          <Link className="links" to="/login">
-            Login
+        <Link className="links" to="/login">
+          Login
           </Link>
 
-          <Link className="links" to="/home">
-            Home
+        <Link className="links" to="/home">
+          Home
           </Link>
-          <Link className="links" to="/showNft">
-            Browse NFTs
+        <Link className="links" to="/showNft">
+          Browse NFTs
           </Link>
-          <Link className="links" to="/profile">
-            Profile
+        <Link className="links" to="/profile">
+          Profile
           </Link>
-          <Link className="links" to="/addNft">
-            Add
+        <Link className="links" to="/addNft">
+          Add
           </Link>
+
           {currentUser.bio == 'currentUser' ?
           <form onSubmit={handleSubmit}>
             <input className="buttForm1" type='submit' value='Logout'/>
@@ -94,7 +97,8 @@ let navigate = useNavigate();
 
 
 
-        </div>
+
+      </div>
 
 
     </>
