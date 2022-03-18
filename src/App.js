@@ -61,8 +61,8 @@ const App = props => {
   }, [])
 
   return (
-    <>
-    
+    <div className='mainDiv'>
+    <UserProvider>
     <BrowserRouter>
       <header className='header'>
         <NavBar />
@@ -81,8 +81,8 @@ const App = props => {
         </Routes>
       </div>
         </BrowserRouter>
-
-    </>
+        </UserProvider>
+    </div>
   )
 }
 
