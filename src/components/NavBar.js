@@ -1,21 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { useState, useEffect } from "react";
 
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from '../Contexts/UserContext'
 export const NavBar = (props) => {
 
-  let user = {image :'',
-  fname :'',
-  lname :'',
-  password :'',
-  collection :'',
-  created :'',
-  favorited :'',
-  offers :'',
-  bio :''}
-  const [users ,setUsers] = useState(user)
 
-const [currentUser ,setCurrentUser] = useState(user)
+  const [users ,setUsers] = useState()
+
+// const [currentUser ,setCurrentUser] = useState(user)
+const [currentUser,setCurrentUser] = useContext(UserContext)
 let navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
@@ -23,11 +17,11 @@ let navigate = useNavigate();
 
   const getUsers = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
-    .then(
-      (response) => setUsers(response.data),
-      (err) => console.error(err)
-    )
-    .catch((error) => console.error(error))
+      .then(
+        (response) => setUsers(response.data),
+        (err) => console.error(err)
+      )
+      .catch((error) => console.error(error))
 
   }
   const handleUpdate = (editUser) => {
@@ -40,19 +34,26 @@ let navigate = useNavigate();
   const loggedOut = async () => {
     console.log('logged out');
     console.log(currentUser.id);
-    handleUpdate(currentUser)
+    handleUpdate(users)
+
   }
+
 
   const handleSubmit =  (e) => {
       e.preventDefault();
+      // setCurrentUser([])
+      axios.get('https://boiling-island-41564.herokuapp.com/api/user')
+      .then(
+            (response) =>
+            response.data.map((user) => {
+            if(user.bio == 'currentUser'){
+              setUsers({ ...user, bio: 'false'})
+              // setCurrentUser([])
+              const response =  loggedOut()
 
-      users.map((user) => {
-        if(user.bio == 'currentUser'){
-          setCurrentUser({ ...user, bio: 'false'})
-          const response =  loggedOut()
         }
 
-      })
+      }))
       console.error('logged out pressed '+ currentUser.fname)
     }
 
@@ -68,32 +69,36 @@ let navigate = useNavigate();
   return (
     <>
 
-        <div className="nav">
+      <div className="nav">
 
-          <Link className="links" to="/login">
-            Login
+        <Link className="links" to="/login">
+          Login
           </Link>
 
-          <Link className="links" to="/home">
-            Home
+        <Link className="links" to="/home">
+          Home
           </Link>
-          <Link className="links" to="/showNft">
-            Browse NFTs
+        <Link className="links" to="/showNft">
+          Browse NFTs
           </Link>
-          <Link className="links" to="/profile">
-            Profile
+        <Link className="links" to="/profile">
+          Profile
           </Link>
-          <Link className="links" to="/addNft">
-            Add
+        <Link className="links" to="/addNft">
+          Add
           </Link>
+
+          {currentUser.bio == 'currentUser' ?
           <form onSubmit={handleSubmit}>
             <input className="buttForm1" type='submit' value='Logout'/>
           </form>
+          :null}
 
 
 
 
-        </div>
+
+      </div>
 
 
     </>

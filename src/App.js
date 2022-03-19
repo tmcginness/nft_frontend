@@ -10,17 +10,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { AddNft } from "./pages/AddNft";
-import { ShowNft } from "./pages/Show";
+import ShowNft from "./pages/Show";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { NavBar } from "./components/NavBar";
-import {UserProvider} from './Contexts/UserContext'
+import { UserProvider } from './Contexts/UserContext'
 
 
 
 const App = props => {
 
   const [nfts, setNfts] = useState([])
+
 
   const getNfts = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
@@ -61,28 +62,29 @@ const App = props => {
   }, [])
 
   return (
-    <>
-    
-    <BrowserRouter>
-      <header className='header'>
-        <NavBar />
-      </header>
-      <div className="container1">
-        <Routes>
 
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/showNft" element={<ShowNft />} />
+    <div className='mainDiv'>
+      <UserProvider>
+        <BrowserRouter>
+          <header className='header'>
+            <NavBar />
+          </header>
+          <div className="container1">
+            <Routes>
 
-          <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/showNft" element={<ShowNft nft={nfts} setNfts={setNfts} />} />
 
-          <Route exact path="/addNft" element={<AddNft />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
-      </div>
+              <Route exact path="/profile" element={<Profile />} />
+
+              <Route exact path="/addNft" element={<AddNft />} />
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/login" element={<Login />} />
+            </Routes>
+          </div>
         </BrowserRouter>
-
-    </>
+      </UserProvider>
+    </div>
   )
 }
 

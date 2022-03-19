@@ -5,7 +5,7 @@
     import NftCard from '../components/NftCard'
     import Modal from '../components/Modal'
     import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from 'react-icons/io';
-
+    import {  useNavigate } from "react-router-dom";
 
 
 
@@ -17,6 +17,10 @@
       const [toggle1, setToggle1] = useState(false);
       const [open, setOpen] = useState(false);
 
+      let navigate = useNavigate();
+      const goToShow= () => {
+        navigate('/showNft')
+      }
         const getNfts = () => {
           axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
             .then(
@@ -44,9 +48,26 @@
       }, [])
       return (
         <>
-        <h1>Home</h1>
+        <h1 className='title'>Home</h1>
         <div className='proContainer'>
           <div className='coverDiv'>
+          <div className='infoBox'>
+          <div className='infoBoxSlide' onClick= {(e) => goToShow() }>
+          {nfts.map((filteredNft) => {
+              return(
+
+          <img className="nftImg2"src={filteredNft.image} alt="" />
+
+          )}) }
+          {nfts.map((filteredNft) => {
+              return(
+
+          <img className="nftImg2"src={filteredNft.image} alt="" />
+
+          )}) }
+
+           </div>
+           </div>
 
           </div>
           <div className='proContent'>
