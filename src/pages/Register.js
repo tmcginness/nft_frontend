@@ -9,6 +9,7 @@ export const Register = () => {
 
   const [user, setUser] = useState({ image: "./proPic.webp" })
   const [users, setUsers] = useState([])
+  const [userImage, setUserImage] = useState(user.image)
   const [toggle, setToggle] = useState(false);
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
@@ -48,6 +49,10 @@ export const Register = () => {
   const handleChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
   }
+  const handleImage = (event) => {
+    setUserImage(event.target.value)
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
   const handlePass = (event) => {
     setPassword(event.target.value)
     setUser({ ...user, [event.target.name]: event.target.value })
@@ -78,44 +83,31 @@ export const Register = () => {
     <>
       <div className='formBox' >
 
-        <form className='form1' onSubmit={handleSubmit}>
-          <div className='pairs'>
+        <form className='formEdit' onSubmit={handleSubmit}>
+          <img className='addimgPre' src={userImage} alt="" />
+
+
+        <div className='pair1'>
             <label htmlFor='image' > Image URL: </label>
-            <input className='inputs1' type='text' name='image' defaultValue={user.image} onChange={handleChange} required />
+            <input className="inputEdit" type='text' name='image' defaultValue={user.image} onChange={handleImage} required />
+          </div>
+
+
+          <div className='pair1'>
+            <label htmlFor='fname' > UserName: </label>
+            <input className="inputEdit" type='text' name='fname' defaultValue={user.fname} onChange={handleChange} required />
           </div>
           <div className='pairs'>
-            <label htmlFor='fname' > Fname: </label>
-            <input className='inputs1' type='text' name='fname' defaultValue={user.fname} onChange={handleChange} required />
+          <input className="inputEdit password" name="password" type="password" defaultValue={user.password} pattern="^\S{6,}$" onChange={handlePass} placeholder="Password" required />
+
+          <input className="inputEdit password" name="password_two" type="password" pattern="^\S{6,}$" onChange={handleConfirmPass} placeholder="Verify Password" required />
           </div>
-          <div className='pairs'>
-            <label htmlFor='lname'>lname: </label>
-            <input className='inputs1' type='text' name='lname' defaultValue={user.lname} onChange={handleChange} required />
-          </div>
-
-          <input id="password" name="password" type="password" defaultValue={user.password} pattern="^\S{6,}$" onChange={handlePass} placeholder="Password" required />
-
-          <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$" onChange={handleConfirmPass} placeholder="Verify Password" required />
-
           <input className='btn1' type='submit' />
         </form>
       </div>
 
 
-      <div>Users</div>
-      {users.map((user) => {
-        return (
-          <div key={user.id} style={{ width: '18rem' }}>
-            <div>
 
-              <div className="nft" >
-                <img src={user.image} alt="" />
-
-                <div>Name: {user.fname}</div>
-              </div>
-            </div>
-          </div>
-        )
-      })}
     </>
   )
 };

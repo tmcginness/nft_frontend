@@ -7,6 +7,7 @@ import Collections from '../components/Collections'
 
 const Add = (props) => {
 
+  const [nftImage, setNftImage] = useState('../dfNft.jpeg')
 
   let emptyNft = { ...props.nft }
   const [nft, setNft] = useState(emptyNft)
@@ -14,7 +15,10 @@ const Add = (props) => {
   const handleChange = (e) => {
       setNft({ ...nft, [e.target.name]: e.target.value })
   }
-
+  const handleImage = (event) => {
+    setNftImage(event.target.value)
+    setNft({ ...nft, [event.target.name]: event.target.value })
+  }
   const handleSubmit = (e) => {
       e.preventDefault()
       props.handleCreate(nft)
@@ -22,37 +26,45 @@ const Add = (props) => {
 
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+
+    <div className='addFormDiv'>
+    <img className='addnftPre' src={nftImage} alt="" />
+      <form className='formEdit' onSubmit={handleSubmit}>
+      <div className='pairs'>
         <div className='pair1'>
           <label htmlFor='name'>Name:</label>
-          <input type='text' name='name' onChange={handleChange} value={nft.name} />
+          <input className="inputEdit" type='text' name='name' onChange={handleChange} value={nft.name} />
         </div>
         <div className='pair1'>
           <label htmlFor='image'>Image URL:</label>
-          <input type='text' name='image' onChange={handleChange} value={nft.image} />
+          <input className="inputEdit" type='text' name='image' onChange={handleImage} value={nft.image} />
         </div>
+        </div>
+          <div className='pairs'>
         <div className='pair1'>
           <label htmlFor='price'>Price:</label>
-          <input type='number' name='price' onChange={handleChange} value={nft.price} />
+          <input className="inputEdit" type='number' name='price' onChange={handleChange} value={nft.price} />
         </div>
         <div className='pair1'>
           <label htmlFor='description'>Description:</label>
-          <input type='text' name='description' onChange={handleChange} value={nft.description} />
+          <input className="inputEdit" type='text' name='description' onChange={handleChange} value={nft.description} />
         </div>
+        </div>
+          <div className='pairs'>
         <div className='pair1'>
           <label htmlFor='properties'>Properties:</label>
-          <input type='text' name='properties' onChange={handleChange} value={nft.properties} />
-
+          <input className="inputEdit" type='text' name='properties' onChange={handleChange} value={nft.properties} />
         </div>
         <div className='pair1'>
           <label htmlFor='description'>Owner:</label>
-          <input type='text' name='description' onChange={handleChange} value={nft.owner} />
+          <input className="inputEdit" type='text' name='description' onChange={handleChange} value={nft.owner} />
         </div>
+        </div>
+
         <div className='pair1'>
           <label htmlFor='properties'>Collections:</label>
           <select
-            className="input"
+            className="inputEdit"
             value={nft.collection}
             onChange={handleChange}>
             <option key="select-ANY" value="other">
@@ -64,10 +76,11 @@ const Add = (props) => {
               </option>
             ))}
           </select>
+
         </div>
-        <button type='submit'>Add NFT</button>
+        <button className='btn1' type='submit'>Add NFT</button>
       </form>
-    </>
+    </div>
   )
 }
 

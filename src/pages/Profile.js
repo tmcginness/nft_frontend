@@ -19,9 +19,13 @@ export const Profile = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [toggle1, setToggle1] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const [toggle, setToggle] = useState(false);
   const [currentUser, setCurrentUser] = useContext(UserContext)
+  const [currentPage, setCurrentPage] = useState(UserContext)
 
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 768px)").matches
+  );
   let navigate = useNavigate();
 
 
@@ -96,6 +100,13 @@ export const Profile = (props) => {
   const show = () => {
     setToggle2((prevState) => !prevState);
   }
+  function MouseOver(event) {
+          setToggle((prevState) => !prevState);
+        }
+        function MouseOut(event){
+          setToggle((prevState) => !prevState);
+        }
+  // console.log(currentPage);
 
   useEffect(
     async () => {
@@ -104,7 +115,11 @@ export const Profile = (props) => {
       getUsers()
       // getCurUsers()
       // setCurrentUser(currUser)
+      setCurrentPage('profile')
       setIsLoading(false);
+      window
+        .matchMedia("(min-width: 768px)")
+        .addEventListener("change", (e) => setMatches(e.matches));
     }, [])
 
   return (
@@ -117,68 +132,82 @@ export const Profile = (props) => {
                 {user.bio == 'currentUser' ?
                   <>
                     <div className='proContainer'>
-                      <h1 className='title'>Profile</h1>
+                      <h1 className='title'>Your Profile</h1>
                       <div className='coverDiv'>
+
                         <div className='infoBox'>
                           <div className='infoBoxSlide' onClick={(e) => goToShow()}>
                             {nfts.map((filteredNft) => {
                               return (
-                                <img className="nftImg2" src={filteredNft.image} alt="" />
+                                <div  key={filteredNft.id} onClick={(e) => goToShow()} >
+                                  <img className="nftImg2" src={filteredNft.image} alt="" />
+                                </div>
                               )
                             }
                             )}
                             {nfts.map((filteredNft) => {
                               return (
-                                <img className="nftImg2" src={filteredNft.image} alt="" />
+                                <div  key={filteredNft.id} onClick={(e) => goToShow()} >
+                                  <img className="nftImg2" src={filteredNft.image} alt="" />
+                                </div>
                               )
                             }
                             )}
                           </div>
                         </div>
-                        <div className='proPicDiv'>
-                          <img className='proPic' src={user.image} />
-                        </div>
+
                       </div>
+
                       <div className='proContent'>
+                      {matches && (
                         <div className='leftContent' style={{ width: toggle2 ? "500px" : "100px" }}>
                           <div className="iconArrowDiv" onClick={(event) => show()}>
                             {toggle2 ? <IoMdArrowDropleftCircle className="iconArrow" /> : <IoMdArrowDroprightCircle className="iconArrow" />}
                           </div>
                           <div className='yourData' style={{ marginLeft: toggle2 ? "10px" : "100px" }}>
-                            <h2>Your Data</h2>
-                            <div className='dataContent'>
-                              Your Data
-                {nfts.filter(nft => nft.owner == currentUser.fname).map(filteredNft => (
-                                <div className="nftBox2" key={filteredNft.id}  >
-                                  <img className="nftImg" src={filteredNft.image} alt="" />
-                                  <div>
-                                    Name: {filteredNft.name}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
+
+
                             {users.map((u) => {
                               return (
+                                <div key= {u.fname + u.id }>
+                                {u.fname === user.fname ? null :
                                 <div className='dataContent'>
                                   <div className='infoName'>
+                                  <img className="proImg2" src={u.image} alt="" />
                                     <h2>{u.fname}'s Collection</h2>
+
                                   </div>
                                   <div className='infoBox3'>
-                                    {nfts.filter(nft => nft.owner == u.fname).map(filteredNft => (
-                                      <div className="nftBox3" key={filteredNft.id}  >
+                                    <div className='infoBoxSlide2'>
+                                      {nfts.filter(nft => nft.owner == u.fname).map(filteredNft => (
+                                        <div className="nftBox3" key={filteredNft.id} onClick={(e) => navigate('/userPage', {state: {name1: u.fname}})} >
                                         <img className="nftImg3" src={filteredNft.image} alt="" />
-                                      </div>
-                                    ))
-                                    }
+                                        </div>
+                                      ))}
+                                      {nfts.filter(nft => nft.owner == u.fname).map(filteredNft => (
+                                        <div className="nftBox3" key={filteredNft.id} onClick={(e) => navigate('/userPage', {state: {name1: u.fname}})} >
+                                          <img className="nftImg3" src={filteredNft.image} alt="" />
+                                        </div>
+
+
+                                      ))}
+
+                                    </div>
                                   </div>
                                 </div>
+                              }
+                              </div>
                               )
                             }
                             )}
                           </div>
                         </div>
-                        <div className='rightContent'>
+                        )}
+                        <div className='rightContent' style={{ backgroundColor: toggle ? "red" : "" }}>
                           <div className='rightTop'>
+                          <div className='proPicDiv'>
+                            <img className='proPic' src={user.image} />
+                          </div>
                           </div>
                           <div className='rightBottom'>
                             <div className='rightTitle'>
@@ -187,7 +216,7 @@ export const Profile = (props) => {
                             {nfts.filter(nft => nft.owner == currentUser.fname).map(filteredNft => (
                               <div className="nftBox" key={filteredNft.id}  >
                                 <NftCard handleUpdate={handleUpdate} nft={filteredNft} />
-                                <button className='btn1' onClick={handleDelete} value={filteredNft.id}>Delete</button>
+                                <button className='btn1' id='delete' onClick={handleDelete} onMouseOver={MouseOver} onMouseOut={MouseOut}  value={filteredNft.id}>Delete</button>
                               </div>
                             )
                             )}

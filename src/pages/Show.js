@@ -75,7 +75,7 @@ const ShowNft = (props) => {
 
       <h1 className="containerTitle">Looking For An NFT? Check Out Below!</h1>
       <div className="searchBar">
-        <input placeholder="Search For An NFT Name, Collection, or Property" onChange={event => setQuery(event.target.value)} />
+        <input className="inputEdit"  placeholder="Search For An NFT Name, Collection, or Property" onChange={event => setQuery(event.target.value)} />
 
       </div>
 
