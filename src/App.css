@@ -13,6 +13,10 @@
   margin: 5px;
 }
 
+.card-header h3{
+  font-family: 'Poller One', cursive;
+}
+
 .buttForm1 {
   background: none!important;
   border: none;

@@ -92,7 +92,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://i.postimg.cc/GtWKQySh/unnamed-2.png" /></Card.Title>
                   <Card.Text>
-                    <p><b>Description</b>: The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain. Your Bored Ape doubles as your Yacht Club membership card, and grants access to members-only benefits, the first of which is access to THE BATHROOM, a collaborative graffiti board. Future areas and perks can be unlocked by the community through roadmap activation. Visit www.BoredApeYachtClub.com for more details. </p>
+                    The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain. Your Bored Ape doubles as your Yacht Club membership card, and grants access to members-only benefits, the first of which is access to THE BATHROOM, a collaborative graffiti board. Future areas and perks can be unlocked by the community through roadmap activation. Visit www.BoredApeYachtClub.com for more details.
                   </Card.Text>
 
                 </Card.Body>
@@ -103,7 +103,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://i.postimg.cc/66vm7WP5/unnamed.jpg" /></Card.Title>
                   <Card.Text>
-                    <b>Description</b>: A community-driven collectibles project featuring art by Burnt Toast. Doodles come in a joyful range of colors, traits and sizes with a collection size of 10,000. Each Doodle allows its owner to vote for experiences and activations paid for by the Doodles Community Treasury.
+                    A community-driven collectibles project featuring art by Burnt Toast. Doodles come in a joyful range of colors, traits and sizes with a collection size of 10,000. Each Doodle allows its owner to vote for experiences and activations paid for by the Doodles Community Treasury.
                   </Card.Text>
 
                 </Card.Body>
@@ -114,7 +114,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://i.postimg.cc/MGJTSKgM/unnamed-2.png" /></Card.Title>
                   <Card.Text>
-                    <b>Description</b>: 20,000 next-gen Avatars, by RTFKT and Takashi Murakami 🌸
+                    20,000 next-gen Avatars, by RTFKT and Takashi Murakami 🌸
                   </Card.Text>
 
                 </Card.Body>
@@ -125,7 +125,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://i.postimg.cc/xTkTNz2N/unnamed-3.png" /></Card.Title>
                   <Card.Text>
-                    <b>Description</b>: CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and became one of the inspirations for the ERC-721 standard. They have been featured in places like The New York Times, Christie’s of London, Art|Basel Miami, and The PBS NewsHour.
+                    CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and became one of the inspirations for the ERC-721 standard. They have been featured in places like The New York Times, Christie’s of London, Art|Basel Miami, and The PBS NewsHour.
                   </Card.Text>
 
                 </Card.Body>
@@ -136,7 +136,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://lh3.googleusercontent.com/H8jOCJuQokNqGBpkBN5wk1oZwO7LM8bNnrHCaekV2nKjnCqw6UB5oaH8XyNeBDj6bA_n1mjejzhFQUP3O1NfjFLHr3FOaeHcTOOT=s130" /></Card.Title>
                   <Card.Text>
-                    <b>Description</b>: A brand for the metaverse. Built by the community. View the collection at azuki.com/gallery. Azuki starts with a collection of 10,000 avatars that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized future. Azuki holders receive access to exclusive drops, experiences, and more. Visit azuki.com for more details. We rise together. We build together. We grow together. Ready to take the red bean?
+                    A brand for the metaverse. Built by the community. View the collection at azuki.com/gallery. Azuki starts with a collection of 10,000 avatars that give you membership access to The Garden: a corner of the internet where artists, builders, and web3 enthusiasts meet to create a decentralized future. Azuki holders receive access to exclusive drops, experiences, and more. Visit azuki.com for more details. We rise together. We build together. We grow together. Ready to take the red bean?
                   </Card.Text>
 
                 </Card.Body>
@@ -147,7 +147,7 @@ export const Home = (props) => {
                 <Card.Body>
                   <Card.Title><img className="nftImg" src="https://lh3.googleusercontent.com/7rQxqp2cAN4J-pFJ6A22Ncb_tm2j6Lz61zXMi9bNJbmAk8PheVXcL4zVIZptVQ8_owbOJAiYuhSbn0vtjwcE4Jg7FQqDGwZTndd-_A=s130" /></Card.Title>
                   <Card.Text>
-                    <b>Description</b>: A community celebrating representation, inclusivity, and equal opportunities for all. United by a first-of-its-kind collection, featuring 10,000 artworks of diverse and powerful women. Created and Illustrated by Yam Karkai (@ykarkai)
+                    A community celebrating representation, inclusivity, and equal opportunities for all. United by a first-of-its-kind collection, featuring 10,000 artworks of diverse and powerful women. Created and Illustrated by Yam Karkai (@ykarkai)
                   </Card.Text>
 
                 </Card.Body>
