@@ -73,6 +73,13 @@ export const Profile = (props) => {
       })
   }
 
+  const handleDelete = (e) => {
+    axios.delete('https://boiling-island-41564.herokuapp.com/api/nfts/' + e.target.value)
+      .then((response) => {
+        getNfts()
+      })
+  }
+
   const goToShow = () => {
     navigate('/showNft')
   }
@@ -180,7 +187,7 @@ export const Profile = (props) => {
                             {nfts.filter(nft => nft.owner == currentUser.fname).map(filteredNft => (
                               <div className="nftBox" key={filteredNft.id}  >
                                 <NftCard handleUpdate={handleUpdate} nft={filteredNft} />
-
+                                <button className='btn1' onClick={handleDelete} value={filteredNft.id}>Delete</button>
                               </div>
                             )
                             )}

@@ -88,7 +88,7 @@ const ShowNft = (props) => {
           }
         }).map((nft) => {
           return (
-            <div className="nftBox" key={nft.id}  >
+            <div className="nftBoxHide" key={nft.id}  >
               <NftCard handleUpdate={handleUpdate} nft={nft} />
             </div>)
         })}
