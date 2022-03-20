@@ -78,7 +78,7 @@ const App = props => {
               <Route exact path="/profile" element={<Profile />} />
 
               <Route exact path="/addNft" element={<AddNft />} />
-              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
             </Routes>
           </div>

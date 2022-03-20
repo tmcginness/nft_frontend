@@ -6,11 +6,11 @@ import { UserContext } from '../Contexts/UserContext'
 export const NavBar = (props) => {
 
 
-  const [users ,setUsers] = useState()
+  const [users, setUsers] = useState()
 
-// const [currentUser ,setCurrentUser] = useState(user)
-const [currentUser,setCurrentUser] = useContext(UserContext)
-let navigate = useNavigate();
+  // const [currentUser ,setCurrentUser] = useState(user)
+  const [currentUser, setCurrentUser] = useContext(UserContext)
+  let navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
@@ -39,23 +39,23 @@ let navigate = useNavigate();
   }
 
 
-  const handleSubmit =  (e) => {
-      e.preventDefault();
-      // setCurrentUser([])
-      axios.get('https://boiling-island-41564.herokuapp.com/api/user')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // setCurrentUser([])
+    axios.get('https://boiling-island-41564.herokuapp.com/api/user')
       .then(
-            (response) =>
-            response.data.map((user) => {
-            if(user.bio == 'currentUser'){
-              setUsers({ ...user, bio: 'false'})
+        (response) =>
+          response.data.map((user) => {
+            if (user.bio == 'currentUser') {
+              setUsers({ ...user, bio: 'false' })
               // setCurrentUser([])
-              const response =  loggedOut()
+              const response = loggedOut()
 
-        }
+            }
 
-      }))
-      console.error('logged out pressed '+ currentUser.fname)
-    }
+          }))
+    console.error('logged out pressed ' + currentUser.fname)
+  }
 
 
   useEffect(() => {
@@ -75,7 +75,7 @@ let navigate = useNavigate();
           Login
           </Link>
 
-        <Link className="links" to="/home">
+        <Link className="links" to="/">
           Home
           </Link>
         <Link className="links" to="/showNft">
@@ -88,11 +88,11 @@ let navigate = useNavigate();
           Add
           </Link>
 
-          {currentUser.bio == 'currentUser' ?
+        {currentUser.bio == 'currentUser' ?
           <form onSubmit={handleSubmit}>
-            <input className="buttForm1" type='submit' value='Logout'/>
+            <input className="buttForm1" type='submit' value='Logout' />
           </form>
-          :null}
+          : null}
 
 
 
