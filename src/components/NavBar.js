@@ -89,7 +89,7 @@ export const NavBar = (props) => {
           </Link>
 
         {currentUser.bio == 'currentUser' ?
-          <form onSubmit={handleSubmit}>
+          <form className="formNav" onSubmit={handleSubmit}>
             <input className="buttForm1" type='submit' value='Logout' />
           </form>
           : null}

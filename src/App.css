@@ -8,6 +8,27 @@
   padding: 25px 0px;
 }
 
+.card{
+  flex: 49%;
+  margin: 5px;
+}
+
+.buttForm1 {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.formNav {
+  margin: 20px;
+}
+
 .searchBar{
   width: 50%;
   text-align: center;

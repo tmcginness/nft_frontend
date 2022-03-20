@@ -1,77 +1,76 @@
-import Add from '../components/AddNft'
-import Edit from '../components/EditNft'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Collections from '../components/Collections'
 
 
 
-export const AddNft = () => {
 
-const [nfts, setNfts] = useState([])
-  const getNfts = () => {
-    axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
-      .then(
-        (response) => setNfts(response.data),
-        (error) => console.error(error))
-      .catch()
+const Add = (props) => {
 
+
+  let emptyNft = { ...props.nft }
+  const [nft, setNft] = useState(emptyNft)
+
+  const handleChange = (e) => {
+    setNft({ ...nft, [e.target.name]: e.target.value })
   }
 
-  const handleCreate = (addNft) => {
-    axios.post('https://boiling-island-41564.herokuapp.com/api/nfts', addNft)
-      .then((response) => {
-        console.log(response);
-        setNfts([...nfts, response.data])
-      })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    props.handleCreate(nft)
   }
 
-  const handleDelete = (e) => {
-    axios.delete('https://boiling-island-41564.herokuapp.com/api/nfts/' + e.target.value)
-      .then((response) => {
-        getNfts()
-      })
-  }
 
-  const handleUpdate = (editNft) => {
-    axios.put('https://boiling-island-41564.herokuapp.com/api/nfts/' + editNft.id, editNft)
-      .then((response) => {
-        setNfts(nfts.map((nft) => {
-          return nft.id !== editNft.id ? nft : editNft
-        }))
-      })
-  }
-
-  useEffect(() => {
-    getNfts()
-  }, [])
-  // {nfts.map((nft) => {
-  //   return (
-  //
-  //     <div key={nft.id} style={{ width: '18rem' }}>
-  //       <div>
-  //
-  //         <div className="nft" >
-  //           <img src={nft.image} alt="" />
-  //
-  //           <div>Name: {nft.name}</div>
-  //
-  //           <div><h5>Price: {nft.price}</h5></div>
-  //           <p>Description: {nft.description}</p>
-  //           <p>Properties: [{nft.properties}]</p>
-  //           <Edit handleUpdate={handleUpdate} nft={nft} />
-  //           <button onClick={handleDelete} value={nft.id}>Delete</button>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // })}
   return (
     <>
-    <h1>Add</h1>
-    <div >
-      <Add handleCreate={handleCreate} />
+      <form onSubmit={handleSubmit}>
+        <div className='pair1'>
+          <label htmlFor='name'>Name:</label>
+          <input type='text' name='name' onChange={handleChange} value={nft.name} />
+        </div>
+        <div className='pair1'>
+          <label htmlFor='image'>Image URL:</label>
+          <input type='text' name='image' onChange={handleChange} value={nft.image} />
+        </div>
+        <div className='pair1'>
+          <label htmlFor='price'>Price:</label>
+          <input type='number' name='price' onChange={handleChange} value={nft.price} />
+        </div>
+        <div className='pair1'>
+          <label htmlFor='description'>Description:</label>
+          <input type='text' name='description' onChange={handleChange} value={nft.description} />
+        </div>
+        <div className='pair1'>
+          <label htmlFor='properties'>Properties:</label>
+          <input type='text' name='properties' onChange={handleChange} value={nft.properties} />
 
-    </div>
+        </div>
+        <div className='pair1'>
+          <label htmlFor='owner'>Owner:</label>
+          <input type='text' name='owner' onChange={handleChange} value={nft.owner} />
+        </div>
+        <div className='pair1'>
+          <label htmlFor='collections'>Collections:</label>
+          <select
+            className="input"
+            value={nft.collection}
+            onChange={handleChange}>
+            <option key="select-ANY" value="other">
+              OTHER
+            </option>
+            {Collections.map((col) => (
+              <option key={"select-" + col} value={col}>
+                {col}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button type='submit'>Add NFT</button>
+      </form>
     </>
   )
 }
+
+export default Add
+
