@@ -18,8 +18,14 @@ text-align: center;
   margin: 5px;
 }
 
+.card-header {
+  background-color: rgb(0, 115, 221);
+}
+
 .card-header h3{
   font-family: 'Poller One', cursive;
+  color: white;
+  margin-top: .5rem !important;
 }
 
 .buttForm1 {

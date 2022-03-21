@@ -86,7 +86,7 @@ export const NavBar = (props) => {
             <NavLink className="links" to="/profile">
               Profile
         </NavLink>
-            <NavLink className="links" to="/about">
+            <NavLink className="links" to="/">
               About
           </NavLink>
             <NavLink className="links" to="/addNft">

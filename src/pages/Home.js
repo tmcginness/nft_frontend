@@ -58,16 +58,16 @@ export const Home = (props) => {
             <div className='infoBoxSlide' onClick={(e) => goToShow()}>
               {nfts.map((filteredNft) => {
                 return (
-
-                  <img className="nftImg2" src={filteredNft.image} alt="" />
-
+                  <div key={filteredNft.id} onClick={(e) => goToShow()} >
+                    <img className="nftImg2" src={filteredNft.image} alt="" />
+                  </div>
                 )
               })}
               {nfts.map((filteredNft) => {
                 return (
-
-                  <img className="nftImg2" src={filteredNft.image} alt="" />
-
+                  <div key={filteredNft.id} onClick={(e) => goToShow()} >
+                    <img className="nftImg2" src={filteredNft.image} alt="" />
+                  </div>
                 )
               })}
 
