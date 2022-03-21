@@ -152,6 +152,27 @@ export const Home = (props) => {
                 </Card.Body>
               </Card>
 
+              <Card>
+                <Card.Header><h3>Super Ordinary Villian</h3></Card.Header>
+                <Card.Body>
+                  <Card.Title><img className="nftImg" src="https://i.postimg.cc/KjPLLZq1/unnamed.jpg" /></Card.Title>
+                  <Card.Text>
+                    8888 piece generative NFT collection made up of super villains. But these villains aren't out of reach. They live next door, they fly about your planes, they're a part of your very ordinary world. So as you fight traffic, they also fight traffic, but with ability to light your car on fire if they get too angry.
+                  </Card.Text>
+
+                </Card.Body>
+              </Card>
+
+              <Card>
+                <Card.Header><h3>ICE Poker Wearable</h3></Card.Header>
+                <Card.Body>
+                  <Card.Title><img className="nftImg" src="https://i.postimg.cc/kgnNQbdq/unnamed-4.png" /></Card.Title>
+                  <Card.Text>
+                    Decentral Games ICE Poker Wearables unlock access to ICE Poker, a free-to-play, play & earn poker game in the metaverse. As an ICE wearable holder or delegated player, you can earn ICE by completing daily challenges and competing in tournaments. All wearables can be “upgraded” from gameplay, and the higher the rank of the ICE wearable, the higher potential earnings.
+                  </Card.Text>
+
+                </Card.Body>
+              </Card>
 
 
 
