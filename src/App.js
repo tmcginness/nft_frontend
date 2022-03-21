@@ -11,6 +11,7 @@ import Add from "./pages/AddNft";
 import ShowNft from "./pages/Show";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
+import { UserPage } from "./pages/UserPage";
 import { NavBar } from "./components/NavBar";
 import { UserProvider } from './Contexts/UserContext'
 
@@ -72,7 +73,7 @@ const App = props => {
 
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/showNft" element={<ShowNft nft={nfts} setNfts={setNfts} />} />
-
+              <Route exact path="/userPage" element={<UserPage />} />
               <Route exact path="/profile" element={<Profile />} />
 
               <Route exact path="/addNft" element={<Add handleCreate={handleCreate} />} />
