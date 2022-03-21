@@ -74,7 +74,7 @@ const ShowNft = (props) => {
 
       <h1 className="containerTitle">Looking For An NFT? Check Out Below!</h1>
       <div className="searchBar">
-        <input className="inputEdit"  placeholder="Search For An NFT Name, Collection, or Property" onChange={event => setQuery(event.target.value)} />
+        <input className="inputEdit" placeholder="Search For An NFT Name, Collection, or Property" onChange={event => setQuery(event.target.value)} />
 
       </div>
 
@@ -82,7 +82,7 @@ const ShowNft = (props) => {
         {props.nft.filter(nft => {
           if (query === '') {
             return nft;
-          } else if (nft.name.toLowerCase().includes(query.toLowerCase()) || nft.collection.toLowerCase().includes(query.toLowerCase()) || nft.properties.toLowerCase().includes(query.toLowerCase())) {
+          } else if (nft.name.toLowerCase().includes(query.toLowerCase()) || nft.properties.toLowerCase().includes(query.toLowerCase())) {
             return nft;
           }
         }).map((nft) => {
