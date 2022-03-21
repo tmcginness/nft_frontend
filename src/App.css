@@ -83,7 +83,6 @@ text-align: center;
   /* margin-left: 104px; */
   font-family: 'Poller One', cursive;
   text-decoration: none;
-
 }
 
 .nav a, .nav input {
@@ -95,10 +94,11 @@ text-align: center;
 
 .links{
   margin: 20px;
-  text-decoration: none
+  text-decoration: none;
+  color: rgb(0, 115, 221) !important;
 }
 .links.active {
-  color: white;
+  color: white !important;
   background:rgb(0, 115, 221);
   border-radius: 25%;
 }
