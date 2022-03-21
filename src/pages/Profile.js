@@ -173,7 +173,7 @@ export const Profile = (props) => {
                                 {u.fname === user.fname ? null :
                                 <div className='dataContent'>
                                   <div className='infoName'>
-                                  <img className="proImg2" src={u.image} alt="" />
+                                  <img className="proImg2" src={u.image} alt="" onClick={(e) => navigate('/userPage', {state: {name1: u.fname}})}/>
                                     <h2>{u.fname}'s Collection</h2>
 
                                   </div>

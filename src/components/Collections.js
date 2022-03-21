@@ -1,4 +1,5 @@
  const Collections = [
+  
   "Bored Ape Yatch Club",
   "Gutter Cat Gang",
   "Doodles",
