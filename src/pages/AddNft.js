@@ -49,8 +49,7 @@ const Add = (props) => {
 
   return (
     <>
-
-      <h1 className="containerTitle">Add To Your Collection Below!</h1>
+      <h1 className='title'>Add To Your Collection Below!</h1>
       <Form className='addNFT' onSubmit={handleSubmit}>
 
         <Form.Label htmlFor='name'>Name:</Form.Label>
