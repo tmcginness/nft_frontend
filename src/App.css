@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
+text-align: center;
 }
 
 .containerTitle {
@@ -69,6 +69,12 @@
   font-size: 10px;
   font-weight: bold;
   text-align: center;
+}
+.logoutBtn:hover{
+  color: rgb(0, 115, 221);
+  transform: scale(1.1);
+  cursor: pointer;
+
 }
 .exitIcon{
   width: 30px;

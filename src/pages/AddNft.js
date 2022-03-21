@@ -67,7 +67,7 @@ const [nfts, setNfts] = useState([])
   // })}
   return (
     <>
-    <h1>Add</h1>
+    <h1 className='title'>Add</h1>
     <div >
       <Add handleCreate={handleCreate} />
 
