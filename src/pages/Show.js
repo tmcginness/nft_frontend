@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Edit from '../components/EditNft'
 import NftCard from '../components/NftCard'
 import Modal from '../components/Modal'
 import Collections from '../components/Collections'

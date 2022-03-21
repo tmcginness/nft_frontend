@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Add from './components/AddNft'
-import Edit from './components/EditNft'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Card from 'react-bootstrap/Card';
@@ -9,7 +7,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
-import { AddNft } from "./pages/AddNft";
+import Add from "./pages/AddNft";
 import ShowNft from "./pages/Show";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
@@ -78,9 +76,9 @@ const App = props => {
               <Route exact path="/userPage" element={<UserPage />} />
               <Route exact path="/profile" element={<Profile />} />
 
-              <Route exact path="/addNft" element={<AddNft />} />
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/addNft" element={<Add handleCreate={handleCreate} />} />
+              <Route exact path="/about" element={<Home />} />
+              <Route exact path="/" element={<Login />} />
             </Routes>
           </div>
         </BrowserRouter>

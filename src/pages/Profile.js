@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-import Edit from '../components/EditNft'
+
 import NftCard from '../components/NftCard'
 import Modal from '../components/Modal'
 import { UserContext } from '../Contexts/UserContext'
