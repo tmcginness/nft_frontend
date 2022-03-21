@@ -51,23 +51,23 @@ export const Home = (props) => {
   }, [])
   return (
     <>
-      <h1 className='title'>Home</h1>
+      <h1 className='title'>Top NFT Collections</h1>
       <div className='proContainer'>
         <div className='coverDiv'>
           <div className='infoBox'>
             <div className='infoBoxSlide' onClick={(e) => goToShow()}>
               {nfts.map((filteredNft) => {
                 return (
-
-                  <img className="nftImg2" src={filteredNft.image} alt="" />
-
+                  <div key={filteredNft.id} onClick={(e) => goToShow()} >
+                    <img className="nftImg2" src={filteredNft.image} alt="" />
+                  </div>
                 )
               })}
               {nfts.map((filteredNft) => {
                 return (
-
-                  <img className="nftImg2" src={filteredNft.image} alt="" />
-
+                  <div key={filteredNft.id} onClick={(e) => goToShow()} >
+                    <img className="nftImg2" src={filteredNft.image} alt="" />
+                  </div>
                 )
               })}
 
@@ -83,7 +83,7 @@ export const Home = (props) => {
             </div>
             <div className='rightBottom'>
               <div className='rightTitle'>
-                <h2>Top NFT Collections</h2>
+
               </div>
 
               <Card>

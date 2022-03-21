@@ -77,8 +77,8 @@ const App = props => {
               <Route exact path="/profile" element={<Profile />} />
 
               <Route exact path="/addNft" element={<Add handleCreate={handleCreate} />} />
-              <Route exact path="/about" element={<Home />} />
-              <Route exact path="/" element={<Login />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/login" element={<Login />} />
             </Routes>
           </div>
         </BrowserRouter>
