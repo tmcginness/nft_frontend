@@ -13,12 +13,8 @@ export const NavBar = (props) => {
   const [users, setUsers] = useState()
 
   // const [currentUser ,setCurrentUser] = useState(user)
-<<<<<<< HEAD
   const [currentUser, setCurrentUser] = useContext(UserContext)
-=======
-  const [currentUser,setCurrentUser] = useContext(UserContext)
 
->>>>>>> 5d0eda9c80dcf458334fbbeef72781feed73c70c
   let navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
@@ -48,17 +44,10 @@ export const NavBar = (props) => {
   }
 
 
-<<<<<<< HEAD
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const logOut = (e) => {
+
     // setCurrentUser([])
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
-=======
-  const logOut =  (e) => {
-
-      // setCurrentUser([])
-      axios.get('https://boiling-island-41564.herokuapp.com/api/user')
->>>>>>> 5d0eda9c80dcf458334fbbeef72781feed73c70c
       .then(
         (response) =>
           response.data.map((user) => {
@@ -97,7 +86,7 @@ export const NavBar = (props) => {
             <NavLink className="links" to="/profile">
               Profile
         </NavLink>
-            <NavLink className="links" to="/">
+            <NavLink className="links" to="/about">
               About
           </NavLink>
             <NavLink className="links" to="/addNft">

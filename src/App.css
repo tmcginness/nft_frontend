@@ -65,16 +65,11 @@
   width: 100%;
   justify-content: center;
   /* background-color: red; */
-<<<<<<< HEAD
   margin: auto;
-=======
-  margin-top: auto;
-  margin-bottom: 8px;
   /* margin-left: 104px; */
   font-family: 'Poller One', cursive;
   text-decoration: none;
 
->>>>>>> 5d0eda9c80dcf458334fbbeef72781feed73c70c
 }
 
 .nav a, .nav input {
@@ -279,8 +274,7 @@ cursor: pointer;
   border-bottom: 3px solid rgb(0, 115, 221);
   border-radius: 5px;
   padding: 3px;
-
-<<<<<<< HEAD
+}
 .addNFT {
   width:45%;
 }
@@ -306,7 +300,6 @@ cursor: pointer;
 
 .addbtn:hover{
   background-color: rgb(0, 115, 221);
-=======
 }
 
 .formBox{
@@ -319,7 +312,6 @@ cursor: pointer;
 }
 .btnPair{
   display: flex;
->>>>>>> 5d0eda9c80dcf458334fbbeef72781feed73c70c
 }
 
 .password{
@@ -757,7 +749,6 @@ cursor: pointer;
 }
 
 #delete {
-  width: 75px;
   background-color: rgb(120, 4, 0);
 }
 #delete:hover {
