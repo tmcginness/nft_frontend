@@ -29,7 +29,7 @@ const [currentUser,setCurrentUser] = useContext(UserContext)
 // const [currentUser,setCurrentUser] = useState([])
 
 
-console.log('bio =' +currentUser.bio);
+// console.log('bio =' +currentUser.bio);
 
   const getUsers = () => {
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
@@ -81,7 +81,7 @@ console.log('bio =' +currentUser.bio);
                setCurrentUser({ ...user, bio: 'currentUser'})
                console.log('this is cu '+ currentUser.bio)
                if(currentUser.bio== undefined){
-                 handleSubmit(e)
+                 // handleSubmit(e)
                }else {
 
               console.log('this is now '+ currentUser.bio)
@@ -151,25 +151,28 @@ console.log('bio =' +currentUser.bio);
 
     <form onSubmit={handleSubmit}>
               <div className="formBox">
-                <div className="pairs">
+                <div className="pair1">
                   UserName:{" "}
                   <input
-                    className="input"
+                    className="inputEdit"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
-                <div className="pairs">
+                <div className="pair1">
                   Password:{" "}
                   <input
-                    className="input"
+                    className="inputEdit"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <input className="buttForm1" type='submit' value='Login'onClick= {(e) => handleSubmit} />
-                  <button className='buttForm2' onClick= {(e) => navigate('/register')}>Register</button>
+                  </div>
+                  <div className="btnPair">
+                  <input className="btn2" type='submit' value='Login'onClick= {(e) => handleSubmit} />
+                  <button className='btn1' onClick= {(e) => navigate('/register')}>Register</button>
+
                 </div>
               </div>
             </form>

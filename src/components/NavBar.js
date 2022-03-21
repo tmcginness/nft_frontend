@@ -1,8 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from '../Contexts/UserContext'
+import { IoIosExit } from 'react-icons/io';
+
+
+
 export const NavBar = (props) => {
 
 
@@ -10,6 +14,7 @@ export const NavBar = (props) => {
 
   // const [currentUser ,setCurrentUser] = useState(user)
   const [currentUser, setCurrentUser] = useContext(UserContext)
+
   let navigate = useNavigate();
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
@@ -32,15 +37,15 @@ export const NavBar = (props) => {
       })
   }
   const loggedOut = async () => {
-    console.log('logged out');
-    console.log(currentUser.id);
+    // console.log('logged out');
+    // console.log(currentUser.id);
     handleUpdate(users)
 
   }
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const logOut = (e) => {
+
     // setCurrentUser([])
     axios.get('https://boiling-island-41564.herokuapp.com/api/user')
       .then(
@@ -68,39 +73,35 @@ export const NavBar = (props) => {
 
   return (
     <>
-
       <div className="nav">
-
-        <Link className="links" to="/login">
+        <NavLink className="links" to="/login">
           Login
-          </Link>
+          </NavLink>
 
-        <Link className="links" to="/">
-          Home
-          </Link>
-        <Link className="links" to="/showNft">
+        <NavLink className="links" to="/showNft">
           Browse NFTs
-          </Link>
-        <Link className="links" to="/profile">
-          Profile
-          </Link>
-        <Link className="links" to="/addNft">
-          Add
-          </Link>
-
+          </NavLink>
         {currentUser.bio == 'currentUser' ?
-          <form className="formNav" onSubmit={handleSubmit}>
-            <input className="buttForm1" type='submit' value='Logout' />
-          </form>
-          : null}
-
-
-
-
-
+          <>
+            <NavLink className="links" to="/profile">
+              Profile
+        </NavLink>
+            <NavLink className="links" to="/about">
+              About
+          </NavLink>
+            <NavLink className="links" to="/addNft">
+              Add+
+        </NavLink>
+          </> : null}
       </div>
-
-
+      <div className='logoutBtn'>
+        {currentUser.bio == 'currentUser' ?
+          <>
+            <IoIosExit className='exitIcon' onClick={(e) => logOut()} />
+            <p id='logoutWord'>LogOut</p>
+          </>
+          : null}
+      </div>
     </>
   );
 };

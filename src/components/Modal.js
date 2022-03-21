@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from 'react'
 
 
@@ -11,6 +12,8 @@ const Modals = (props) => {
   const [modalData, setModalData] = useState(props.nft);
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(props.open);
+  let navigate = useNavigate();
+
 
   // let properties = modalData.properties.split(',')
 
@@ -71,6 +74,9 @@ return(
         </div>
         <div className= 'zoomContent'>
           <h2>{modalData.name}</h2>
+          <h2 onClick={(e) => navigate('/userPage', {state: {name1: modalData.owner}})}>
+            <span className='nameProModal'>{modalData.owner}</span>
+          </h2>
           <h5>Price: ${modalData.price}</h5>
           <div className='zoomDesc'>
           <h5>Description: {modalData.description}</h5>
