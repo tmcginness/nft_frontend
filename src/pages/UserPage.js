@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { useNavigate, useLocation} from "react-router-dom";
-import Edit from '../components/EditNft'
+import { useNavigate, useLocation } from "react-router-dom";
 import NftCard from '../components/NftCard'
 import Modal from '../components/Modal'
 import { UserContext } from '../Contexts/UserContext'
-import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle} from 'react-icons/io';
-import {IoHome } from 'react-icons/io5';
+import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from 'react-icons/io';
+import { IoHome } from 'react-icons/io5';
 
 
 
@@ -28,7 +27,7 @@ export const UserPage = (props) => {
   );
   let navigate = useNavigate();
   const location = useLocation();
-const [user, setUser] = useState(location.state.name1)
+  const [user, setUser] = useState(location.state.name1)
 
   // console.log('profile user ' + currentUser.fname);
 
@@ -90,7 +89,7 @@ const [user, setUser] = useState(location.state.name1)
                           <div className='infoBoxSlide' onClick={(e) => goToShow()}>
                             {nfts.map((filteredNft) => {
                               return (
-                                <div  key={filteredNft.id} onClick={(e) => goToShow()} >
+                                <div key={filteredNft.id} onClick={(e) => goToShow()} >
                                   <img className="nftImg2" src={filteredNft.image} alt="" />
                                 </div>
                               )
@@ -98,7 +97,7 @@ const [user, setUser] = useState(location.state.name1)
                             )}
                             {nfts.map((filteredNft) => {
                               return (
-                                <div  key={filteredNft.id} onClick={(e) => goToShow()} >
+                                <div key={filteredNft.id} onClick={(e) => goToShow()} >
                                   <img className="nftImg2" src={filteredNft.image} alt="" />
                                 </div>
                               )
@@ -114,12 +113,12 @@ const [user, setUser] = useState(location.state.name1)
 
                         <div className='rightContent' style={{ backgroundColor: toggle ? "red" : "" }}>
                           <div className='rightTop'>
-                          <div className='proPicDiv'>
-                            <img className='proPic' src={user1.image} />
-                          </div>
-                          <button className='returnHome btn2' onClick={(e) => navigate('/profile')}>
-                            <IoHome />
-                            Home
+                            <div className='proPicDiv'>
+                              <img className='proPic' src={user1.image} />
+                            </div>
+                            <button className='returnHome btn2' onClick={(e) => navigate('/profile')}>
+                              <IoHome />
+                              Home
                            </button>
                           </div>
                           <div className='rightBottom'>

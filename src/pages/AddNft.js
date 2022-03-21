@@ -1,77 +1,101 @@
-import Add from '../components/AddNft'
-import Edit from '../components/EditNft'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { render } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import Collections from '../components/Collections';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-export const AddNft = () => {
 
-const [nfts, setNfts] = useState([])
-  const getNfts = () => {
-    axios.get('https://boiling-island-41564.herokuapp.com/api/nfts')
-      .then(
-        (response) => setNfts(response.data),
-        (error) => console.error(error))
-      .catch()
+const Add = (props) => {
 
+
+  let emptyNft = { ...props.nft }
+  const [nft, setNft] = useState(emptyNft)
+  const [show, setShow] = useState(false);
+
+  const handleChange = (e) => {
+    setNft({ ...nft, [e.target.name]: e.target.value })
   }
 
-  const handleCreate = (addNft) => {
-    axios.post('https://boiling-island-41564.herokuapp.com/api/nfts', addNft)
-      .then((response) => {
-        console.log(response);
-        setNfts([...nfts, response.data])
-      })
+  function AlertDismissible() {
+
+    return (
+      <>
+        <Alert show={show} variant="success">
+          <Alert.Heading>Success!</Alert.Heading>
+          <p>
+            Your NFT has been added! Check your profile, or Browse NFTS to see them all!
+          </p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={() => setShow(false)} variant="outline-success">
+              Close
+            </Button>
+          </div>
+        </Alert>
+      </>
+    );
   }
 
-  const handleDelete = (e) => {
-    axios.delete('https://boiling-island-41564.herokuapp.com/api/nfts/' + e.target.value)
-      .then((response) => {
-        getNfts()
-      })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    props.handleCreate(nft)
+    setShow(true)
   }
 
-  const handleUpdate = (editNft) => {
-    axios.put('https://boiling-island-41564.herokuapp.com/api/nfts/' + editNft.id, editNft)
-      .then((response) => {
-        setNfts(nfts.map((nft) => {
-          return nft.id !== editNft.id ? nft : editNft
-        }))
-      })
-  }
 
-  useEffect(() => {
-    getNfts()
-  }, [])
-  // {nfts.map((nft) => {
-  //   return (
-  //
-  //     <div key={nft.id} style={{ width: '18rem' }}>
-  //       <div>
-  //
-  //         <div className="nft" >
-  //           <img src={nft.image} alt="" />
-  //
-  //           <div>Name: {nft.name}</div>
-  //
-  //           <div><h5>Price: {nft.price}</h5></div>
-  //           <p>Description: {nft.description}</p>
-  //           <p>Properties: [{nft.properties}]</p>
-  //           <Edit handleUpdate={handleUpdate} nft={nft} />
-  //           <button onClick={handleDelete} value={nft.id}>Delete</button>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // })}
   return (
     <>
-    <h1 className='title'>Add</h1>
-    <div >
-      <Add handleCreate={handleCreate} />
 
-    </div>
+      <h1 className="containerTitle">Add To Your Collection Below!</h1>
+      <Form className='addNFT' onSubmit={handleSubmit}>
+
+        <Form.Label htmlFor='name'>Name:</Form.Label>
+        <Form.Control type='text' required name='name' onChange={handleChange} value={nft.name} />
+
+
+        <Form.Label htmlFor='image'>Image URL:</Form.Label>
+        <Form.Control type='text' required name='image' onChange={handleChange} value={nft.image} />
+
+
+        <Form.Label htmlFor='price'>Price:</Form.Label>
+        <Form.Control type='number' required name='price' onChange={handleChange} value={nft.price} />
+
+
+        <Form.Label htmlFor='description'>Description:</Form.Label>
+        <Form.Control type='text' required name='description' onChange={handleChange} value={nft.description} />
+
+
+        <Form.Label htmlFor='properties'>Properties:</Form.Label>
+        <Form.Control type='text' required name='properties' onChange={handleChange} value={nft.properties} />
+
+        <Form.Label htmlFor='owner'>Owner:</Form.Label>
+        <Form.Control type='text' required name='owner' onChange={handleChange} value={nft.owner} />
+
+
+        <Form.Label htmlFor='collections'>Collections:</Form.Label>
+        <Form.Select
+          className="input"
+          value={nft.collection}
+          onChange={handleChange}>
+          <option key="select-ANY" value="other">
+            OTHER
+            </option>
+          {Collections.map((col) => (
+            <option key={"select-" + col} value={col}>
+              {col}
+            </option>
+          ))}
+        </Form.Select>
+        <Button className='addbtn' variant='success' type='submit'>Add NFT</Button>
+      </Form>
+      <AlertDismissible />
     </>
   )
 }
+
+export default Add
+
