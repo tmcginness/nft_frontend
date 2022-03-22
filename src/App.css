@@ -18,14 +18,8 @@ text-align: center;
   margin: 5px;
 }
 
-.card-header {
-  background-color: rgb(0, 115, 221);
-}
-
 .card-header h3{
   font-family: 'Poller One', cursive;
-  color: white;
-  margin-top: .5rem !important;
 }
 
 .buttForm1 {
@@ -83,6 +77,7 @@ text-align: center;
   /* margin-left: 104px; */
   font-family: 'Poller One', cursive;
   text-decoration: none;
+  color: rgb(0, 115, 221);
 }
 
 .nav a, .nav input {
@@ -90,15 +85,18 @@ text-align: center;
   font-family: 'Poller One', cursive;
   color: black;
   text-transform: uppercase;
+
+  color: rgb(0, 115, 221);
+=======
+
 }
 
 .links{
   margin: 20px;
-  text-decoration: none;
-  color: rgb(0, 115, 221) !important;
+  text-decoration: none
 }
 .links.active {
-  color: white !important;
+  color: white;
   background:rgb(0, 115, 221);
   border-radius: 25%;
 }

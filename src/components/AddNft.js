@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Collections from '../components/Collections'
-
+import { useNavigate } from "react-router-dom";
 
 
 const Add = (props) => {
@@ -11,6 +11,8 @@ const Add = (props) => {
 
   let emptyNft = { ...props.nft }
   const [nft, setNft] = useState(emptyNft)
+
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
       setNft({ ...nft, [e.target.name]: e.target.value })

@@ -78,7 +78,8 @@ const [currentUser,setCurrentUser] = useContext(UserContext)
         response.data.map((user)  =>  {
           if(user.fname === username && user.password == password){
 
-               setCurrentUser({ ...user, bio: 'currentUser'})
+               setCurrentUser(prevCurrentUser => {
+                 return { ...user, bio: 'currentUser'}})
                console.log('this is cu '+ currentUser.bio)
                if(currentUser.bio== undefined){
                  // handleSubmit(e)

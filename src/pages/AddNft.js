@@ -2,12 +2,17 @@ import { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Collections from '../components/Collections'
+import { useNavigate } from "react-router-dom";
+
 const Add = (props) => {
   const [nftImage, setNftImage] = useState('../dfNft.jpeg')
   let emptyNft = { ...props.nft }
   const [nft, setNft] = useState(emptyNft)
+  let navigate = useNavigate();
+
   const handleChange = (e) => {
     setNft({ ...nft, [e.target.name]: e.target.value })
+
   }
   const handleImage = (event) => {
     setNftImage(event.target.value)
@@ -16,6 +21,7 @@ const Add = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleCreate(nft)
+    navigate('/showNft')
   }
   return (
     <div className='addFormDiv'>
@@ -54,6 +60,7 @@ const Add = (props) => {
         <div className='pair1'>
           <label htmlFor='properties'>Collections:</label>
           <select
+            name='collection'
             className="inputEdit"
             defaultValue={nft.collection}
             onChange={handleChange}>

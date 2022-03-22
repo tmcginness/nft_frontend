@@ -75,7 +75,7 @@ const ShowNft = (props) => {
         }
 
 
-        }).map((nft) => {
+      }).reverse().map((nft) => {
           return (
             <div className="nftBoxHide" key={nft.id}  >
               <NftCard nft={nft} />
