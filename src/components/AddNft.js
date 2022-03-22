@@ -24,7 +24,7 @@ const Add = (props) => {
   const handleSubmit = (e) => {
       e.preventDefault()
       props.handleCreate(nft)
-      navigate('/showNft')
+
   }
 
 

@@ -60,6 +60,7 @@ const Add = (props) => {
         <div className='pair1'>
           <label htmlFor='properties'>Collections:</label>
           <select
+            name='collection'
             className="inputEdit"
             defaultValue={nft.collection}
             onChange={handleChange}>
