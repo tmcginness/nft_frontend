@@ -82,6 +82,7 @@ export const Profile = (props) => {
       .then((response) => {
         getNfts()
       })
+      setToggle((prevState) => !prevState);
   }
 
   const goToShow = () => {
@@ -213,7 +214,7 @@ export const Profile = (props) => {
                             <div className='rightTitle'>
                               <h2><span className='namePro'>{user.fname}'s</span> Collection</h2>
                             </div>
-                            {nfts.filter(nft => nft.owner == currentUser.fname).map(filteredNft => (
+                            {nfts.filter(nft => nft.owner == currentUser.fname).reverse().map(filteredNft => (
                               <div className="nftBox" key={filteredNft.id}  >
                                 <NftCard handleUpdate={handleUpdate} nft={filteredNft} />
                                 <button className='btn1' id='delete' onClick={handleDelete} onMouseOver={MouseOver} onMouseOut={MouseOut}  value={filteredNft.id}>Delete</button>

@@ -123,7 +123,7 @@ export const UserPage = (props) => {
                           </div>
                           <div className='rightBottom'>
 
-                            {nfts.filter(nft => nft.owner == user1.fname).map(filteredNft => (
+                            {nfts.filter(nft => nft.owner == user1.fname).reverse().map(filteredNft => (
                               <div className="nftBoxHide" key={filteredNft.id}  >
                                 <NftCard nft={filteredNft} />
                               </div>)
